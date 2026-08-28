@@ -1,30 +1,73 @@
-<!DOCTYPE HTML>
-<html>
+<!doctype html>
+<html lang="en-GB">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>NAISH - Full Stack Software Engineer</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0">
-    <meta name="description" content="A full stack development company">
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="UK-based full stack software engineer specialising in TypeScript, React, Node.js and building scalable web platforms.">
+  <meta name="theme-color" content="#f2f5f9">
+  <title>Alex Naish - Software Engineer</title>
+  <link rel="preload" href="fonts/barlow-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <h1 class="title">Alex Naish</h1>
-    <h2 class="about">I am <span id="skills" class="typed"></span> Engineer</h2>
-       
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"></script>
-    <script>
-        var typed = new Typed("#skills", {
-            strings: ["a Software", "a Full Stack", "a Web", "a JavaScript", "a Node.js", "a React", "a MongoDB", "a HTML5"],
-            typeSpeed: 150,
-            backDelay: 1500,
-            loop: true,
-        });
-    </script>
-    
+  <a class="skip-link" href="#main-content">Skip to profile</a>
+  <main class="profile" id="main-content">
+    <div class="profile__body">
+      <section class="identity" aria-labelledby="profile-name">
+        <p class="identity__role">Software Engineer</p>
+        <h1 id="profile-name">Alex Naish</h1>
+        <p class="identity__summary">
+          I build scalable full stack products with TypeScript and Node.js, combining hands-on engineering with
+          technical leadership.
+        </p>
+
+        <nav class="contact" aria-label="Contact me">
+          <a class="contact__link contact__link--primary" href="mailto:alex@naish.dev">
+            Email me
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a class="contact__link" href="https://www.linkedin.com/in/alexnaish/" rel="me">
+            LinkedIn
+            <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </section>
+
+      <section class="evidence" aria-labelledby="evidence-title">
+        <div class="evidence__heading">
+          <p class="record-label">Recent tech</p>
+          <h2 id="evidence-title">What I am working with.</h2>
+        </div>
+
+        <dl class="evidence__list">
+          <div class="evidence__item">
+            <dt>Frontend</dt>
+            <dd>React, Next.js and TypeScript</dd>
+          </div>
+          <div class="evidence__item">
+            <dt>Backend</dt>
+            <dd>Node.js, PostgreSQL and tRPC</dd>
+          </div>
+          <div class="evidence__item">
+            <dt>Architecture</dt>
+            <dd>Design systems, real-time analytics and authentication platforms</dd>
+          </div>
+          <div class="evidence__item">
+            <dt>Platforms</dt>
+            <dd>AWS, Cloudflare and Vercel</dd>
+          </div>
+        </dl>
+      </section>
+    </div>
+
+    <footer class="profile__footer">
+      <p><span>Direct</span> <a href="mailto:alex@naish.dev">alex@naish.dev</a></p>
+      <p>2026</p>
+    </footer>
+  </main>
 </body>
+
 </html>
