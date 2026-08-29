@@ -5,9 +5,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
-    content="UK-based full stack software engineer specialising in TypeScript, React, Node.js and building scalable web platforms.">
+    content="Full stack software engineer specialising in TypeScript, React, Node.js and building scalable web platforms.">
   <meta name="theme-color" content="#f2f5f9">
   <title>Alex Naish - Software Engineer</title>
+  <script>
+    (() => {
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = ['light', 'dark'].includes(saved)
+        ? saved
+        : prefersDark ? "dark" : "light";
+
+      document.documentElement.setAttribute("data-theme", theme);
+      document.querySelector('meta[name="theme-color"]').content = theme === "dark" ? "#090c10" : "#f2f5f9";
+    })();
+  </script>
   <link rel="preload" href="fonts/barlow-600-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -65,9 +77,50 @@
 
     <footer class="profile__footer">
       <p><span>Direct</span> <a href="mailto:alex@naish.dev">alex@naish.dev</a></p>
-      <p>2026</p>
+      <div class="profile__controls">
+        <p>2026</p>
+        <button class="theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch to dark theme">
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true"
+            focusable="false">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true"
+            focusable="false">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path
+              d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42">
+            </path>
+          </svg>
+        </button>
+      </div>
     </footer>
   </main>
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const toggle = document.querySelector(".theme-toggle");
+      const themeColor = document.querySelector('meta[name="theme-color"]');
+
+      const updateToggle = (theme) => {
+        const nextTheme = theme === "dark" ? "light" : "dark";
+        const label = `Switch to ${nextTheme} theme`;
+
+        toggle.setAttribute("aria-label", label);
+        toggle.title = label;
+      };
+
+      updateToggle(root.dataset.theme);
+
+      toggle.addEventListener("click", () => {
+        const theme = root.dataset.theme === "dark" ? "light" : "dark";
+
+        root.dataset.theme = theme;
+        localStorage.setItem("theme", theme);
+        themeColor.content = theme === "dark" ? "#090c10" : "#f2f5f9";
+        updateToggle(theme);
+      });
+    })();
+  </script>
 </body>
 
 </html>

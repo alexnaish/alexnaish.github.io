@@ -9,6 +9,14 @@ colors:
   paper: "#ffffff"
   field: "#f2f5f9"
   rule: "#d6dce5"
+darkColors:
+  cobalt: "#78a9ff"
+  cobalt-soft: "#19315c"
+  ink: "#f4f7fb"
+  muted: "#aeb7c4"
+  paper: "#11151b"
+  field: "#090c10"
+  rule: "#343c48"
 typography:
   display:
     fontFamily: "Barlow, sans-serif"
@@ -87,6 +95,11 @@ components:
     typography: "{typography.body}"
     rounded: "{rounded.none}"
     padding: "16px 0"
+  theme-toggle:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.muted}"
+    rounded: "{rounded.control}"
+    size: "40px"
 ---
 
 # Design System: naish.dev
@@ -100,7 +113,7 @@ The system borrows the clarity of contemporary engineering RFCs and architecture
 The voice is modest, exact, and current. A cobalt review spine is the single memorable device; everything else serves reading order, contact, and confidence.
 
 **Key Characteristics:**
-- Clean white document field with graphite type
+- High-contrast document field with graphite type in light mode and a cool near-black inversion in dark mode
 - One cobalt review spine and no decorative color scatter
 - Large humanist-grotesk identity type with compact mono metadata
 - Thin rules, square geometry, and no elevation
@@ -108,7 +121,7 @@ The voice is modest, exact, and current. A cobalt review spine is the single mem
 
 ## Colors
 
-The strategy is restrained: neutral document surfaces carry most of the page, while cobalt marks review state and focus.
+The strategy is restrained: neutral document surfaces carry most of the page, while cobalt marks review state and focus. The light palette remains canonical in `colors`; `darkColors` provides its paired dark-mode values.
 
 ### Primary
 - **Review Cobalt** (`colors.cobalt`): Review spine, active marks, focus rings, and selected text.
@@ -126,6 +139,10 @@ The strategy is restrained: neutral document surfaces carry most of the page, wh
 **The One-Mark Rule.** Cobalt belongs to the review spine, focus, and active state; do not scatter it as decoration.
 
 **The Document Contrast Rule.** Keep core reading on Document White with Graphite Ink; secondary text must remain comfortably legible.
+
+**The Theme Resolution Rule.** Follow the operating-system color preference by default. A valid `data-theme="light"` or `data-theme="dark"` value on the root element is a hard override, and browser chrome must use the matching Workspace Field color.
+
+**The Dark Inversion Rule.** In dark mode, invert the document and workspace surfaces while retaining cobalt as the single review accent. Do not add decorative hues or elevation.
 
 ## Typography
 
@@ -180,6 +197,12 @@ Geometry is square and exact. Rules are one pixel; controls use a restrained 2px
 ### Record Metadata
 - **Style:** Fragment Mono labels paired with Archivo values.
 - **Use:** Location, profile type, and direct contact details.
+
+### Theme Toggle
+- **Shape:** A compact 40px square utility beside the footer year, using the same 2px radius and structural border as contact controls.
+- **Icon:** Moon in light mode and sun in dark mode, representing the theme the control will switch to.
+- **State:** The accessible label and browser theme color update with the page theme; explicit choices persist across visits.
+- **Hover / Focus:** Cobalt marks the active edge, with the same visible offset focus outline as other controls.
 
 ## Do's and Don'ts
 
