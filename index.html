@@ -109,15 +109,53 @@
         toggle.title = label;
       };
 
-      updateToggle(root.dataset.theme);
-
-      toggle.addEventListener("click", () => {
-        const theme = root.dataset.theme === "dark" ? "light" : "dark";
-
+      const applyTheme = (theme) => {
         root.dataset.theme = theme;
         localStorage.setItem("theme", theme);
         themeColor.content = theme === "dark" ? "#090c10" : "#f2f5f9";
         updateToggle(theme);
+      };
+
+      updateToggle(root.dataset.theme);
+
+      toggle.addEventListener("click", () => {
+        const theme = root.dataset.theme === "dark" ? "light" : "dark";
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (!document.startViewTransition || reduceMotion) {
+          applyTheme(theme);
+          return;
+        }
+
+        const bounds = toggle.getBoundingClientRect();
+        const originX = bounds.left + bounds.width / 2;
+        const originY = bounds.top + bounds.height / 2;
+        const radius = Math.hypot(
+          Math.max(originX, window.innerWidth - originX),
+          Math.max(originY, window.innerHeight - originY)
+        ) * 1.05;
+
+        root.classList.add("theme-transition");
+
+        const transition = document.startViewTransition(() => applyTheme(theme));
+
+        transition.ready.then(() => {
+          root.animate(
+            {
+              clipPath: [
+                `circle(0 at ${originX}px ${originY}px)`,
+                `circle(${radius}px at ${originX}px ${originY}px)`
+              ]
+            },
+            {
+              duration: 300,
+              easing: "cubic-bezier(0.65, 0, 0.35, 1)",
+              pseudoElement: "::view-transition-new(root)"
+            }
+          );
+        }).catch(() => transition.skipTransition());
+
+        transition.finished.finally(() => root.classList.remove("theme-transition"));
       });
     })();
   </script>

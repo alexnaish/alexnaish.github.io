@@ -48,6 +48,17 @@
     color-scheme: dark;
 }
 
+html.theme-transition::view-transition-old(root),
+html.theme-transition::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+    display: block;
+}
+
+html.theme-transition::view-transition-image-pair(root) {
+    isolation: auto;
+}
+
 *,
 *::before,
 *::after {
